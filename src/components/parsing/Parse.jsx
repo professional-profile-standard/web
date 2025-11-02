@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import { parse } from "yaml";
+import Educations from "./Educations";
+import PersonalDetails from "./PersonalDetails";
+import Links from "./Links";
+import Misc from "./Misc";
+import Targets from "./Targets";
 
 export default function Parse() {
   const [yaml, setYaml] = useState("");
@@ -42,60 +47,31 @@ export default function Parse() {
 
   return (
     <div>
+      <div className="my-5">
+        <label for="pps-textarea" className="block mb-2 text-lg">
+          Enter your profile
+        </label>
+        <textarea
+          id="pps-textarea"
+          className="block border w-full h-30 rounded p-2"
+          placeholder="PPS YAML file content"
+          onChange={(e) => setYaml(e.target.value)}
+        ></textarea>
+      </div>
+
       <div className="error">{error}</div>
-      <textarea
-        className="block border w-full"
-        onChange={(e) => setYaml(e.target.value)}
-      ></textarea>
 
       {pps && (
         <div>
-          <h2 className="text-xl">Result</h2>
           <div className="space-y-5">
             <PersonalDetails data={pps.personal_details} />
             <Educations data={pps.educations} />
+            <Targets data={pps.targets} />
+            <Links data={pps.links} />
+            <Misc data={pps.misc} />
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-function PersonalDetails({ data }) {
-  if (!data) return null;
-
-  return (
-    <div>
-      <h1>{data.first_name} {data.middle_name} {data.last_name} ({data.preferred_first_name})</h1>
-      <p>{data.gender}</p>
-      <p>{data.race}</p>
-      <p>{data.location}</p>
-      <p>{data.contact.email}</p>
-      <p>{data.contact.country_code} {data.contact.phone_number}</p>
-      <p>{data.contact.website}</p>
-    </div>
-  );
-}
-
-function Educations({ data }) {
-  if (!data) return null;
-
-  return (
-    <div>
-      <h2>Education</h2>
-      {data.map((education, index) => (
-        <div key={index}>
-          <h3>{education.name}</h3>
-          <p>{education.location}</p>
-          <p>{education.from} - {education.to}</p>
-          <p>{education.degree_name} in {education.field_of_study}</p>
-          <ul>
-            {education.achievements.map((achievement, i) => (
-              <li key={i}>{achievement}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
     </div>
   );
 }
