@@ -55,6 +55,7 @@ export default function Parse() {
           id="pps-textarea"
           className="block border w-full h-30 rounded p-2"
           placeholder="PPS YAML file content"
+          value={yaml}
           onChange={(e) => setYaml(e.target.value)}
         ></textarea>
       </div>
@@ -63,7 +64,7 @@ export default function Parse() {
 
       {pps && (
         <div>
-          <div className="space-y-5">
+          <div className="space-y-10">
             <PersonalDetails data={pps.personal_details} />
             <Educations data={pps.educations} />
             <Targets data={pps.targets} />
