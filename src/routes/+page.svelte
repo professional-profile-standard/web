@@ -52,25 +52,14 @@
     }
 </script>
 
-<div class="lg:max-w-[60dvw] mx-auto p-3 pps-wrapper">
-    <div>
-        <h1 class="text-3xl">Professional Profile Standard</h1>
-        <span>
-            Learn more about
-            <a
-                class="text-sm"
-                href="https://github.com/professional-profile-standard/standard"
-                target="_blank">PPS</a
-            >
-        </span>
-    </div>
+<div>
     <div class="my-10">
         <label for="pps-textarea" class="block mb-1 font-medium">
             Enter your PPS
         </label>
         <textarea
             id="pps-textarea"
-            class="block border w-full h-100 rounded p-2"
+            class="block border w-full h-100 rounded p-2 focus:outline-2"
             placeholder="PPS YAML file content"
             bind:value={yaml}
             oninput={updatePps}
