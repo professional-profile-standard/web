@@ -1,5 +1,4 @@
 <script>
-    // import ProfessionalSummary from "./ProfessionalSummary.svelte";
     import Skills from "./Skills.svelte";
     import WorkExperience from "./WorkExperience.svelte";
     import Projects from "./Projects.svelte";
@@ -9,18 +8,30 @@
 
 {#if data}
     <div>
-        {#each Object.entries(data) as [role, roleData] (role)}
-            <div class="space-y-10">
-                <h2 class="category-title">{role.toUpperCase()}</h2>
-                <!-- <ProfessionalSummary data={roleData.professional_summary} /> -->
-                <div>
-                    <h3 class="font-medium text-xl mb-2">{data.title}</h3>
-                    <p>{data.summary}</p>
+        <h2 class="category-title">🪪 Profiles</h2>
+        {#each Object.entries(data) as [profile, profileData] (profile)}
+            <div class="bg-gray-800 p-2 rounded-lg">
+                <h3 class="category-title">🪪 {profile}</h3>
+                <div class="space-y-10">
+                    {@render ProfessionalSummary(
+                        profileData.professional_summary,
+                    )}
+                    <Skills data={profileData.skills} />
+                    <WorkExperience data={profileData.work_experience} />
+                    <Projects data={profileData.projects} />
+                    <!-- cert -->
+                    <!-- misc -->
                 </div>
-                <Skills data={roleData.skills} />
-                <WorkExperience data={roleData.work_experience} />
-                <Projects data={roleData.projects} />
             </div>
         {/each}
     </div>
 {/if}
+
+{#snippet ProfessionalSummary(professional_summary)}
+    <div>
+        <h4 class="font-medium text-xl mb-2">
+            {professional_summary?.title}
+        </h4>
+        <p>{professional_summary?.summary}</p>
+    </div>
+{/snippet}

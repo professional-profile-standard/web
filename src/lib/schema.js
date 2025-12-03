@@ -1,3 +1,4 @@
+
 import {
     object,
     string,
@@ -9,6 +10,7 @@ import {
     ref,
     lazy
 } from 'yup';
+
 
 export const locationSchema = object({
     country: string().required('Country is required'),
@@ -69,4 +71,23 @@ export const personalDetailsSchema = object({
         .default(null),
     gender: string().nullable().default(null),
     race: string().nullable().default(null)
+});
+export const educationSchema = object().shape({
+    institute_name: string().required(),
+    degree_name: string().required(),
+    field: string().nullable(),
+    subfield: string().nullable(),
+    specialization: string().nullable(),
+    cgpa: string().nullable(),
+    achievements: array().of(string()).default([]),
+    location: string().nullable(),
+    duration: string().nullable(),
+    start_date: date().nullable(),
+    end_date: date().nullable(),
+});
+
+export const linkSchema = object().shape({
+    url: string().url().required(),
+    name: string().nullable(),
+    url_text: string().nullable(),
 });

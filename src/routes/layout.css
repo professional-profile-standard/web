@@ -4,6 +4,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --primary: #111114;
+        --card: #222226;
         --text: #ddd;
         --link: rgb(94, 156, 214);
     }
@@ -12,6 +13,7 @@
 @media (prefers-color-scheme: light) {
     :root {
         --primary: #ffffff;
+        --card: #ccc;
         --text: #161616;
         --link: rgb(49, 82, 112);
     }
@@ -19,6 +21,7 @@
 
 @theme inline {
     --color-primary: var(--primary);
+    --color-card: var(--card);
     --color-text: var(--text);
     --color-link: var(--link);
 }
@@ -27,8 +30,12 @@ a {
     @apply text-link;
 }
 
+li {
+    @apply list-disc list-inside;
+}
+
 .category-title {
-    @apply border-b mb-2 font-medium text-xl;
+    @apply border-b pb-1 mb-4 font-medium text-xl;
 }
 
 @media print {

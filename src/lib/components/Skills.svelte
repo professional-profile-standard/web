@@ -4,7 +4,7 @@
 
 {#if data}
     <div>
-        <h3 class="font-medium text-xl mb-2">Skills</h3>
+        <h3 class="font-medium text-xl mb-2">🛠️ Skills</h3>
         <div class="overflow-auto">
             <table class="w-full">
                 <tbody>

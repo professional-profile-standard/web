@@ -1,95 +1,145 @@
 export const sample_pps = `
 personal_details:
-  first_name: Ruby
-  preferred_first_name: Cash
-  middle_name: Ada
-  last_name: Stack
+  first_name: First 
+  preferred_first_name: First
+  middle_name: Middle
+  last_name: Last
   profile_pic: https://cdn.pixabay.com/photo/2024/10/09/23/55/ai-generated-9109565_640.jpg
   gender: Male
-  race: Tabby
+  race: Asian
   location:
-    country: Catan
-    state: Tabby State
-    street: East
+    country: ABC Country
+    state: ABC State
+    city: ABC City
+    village: ABC Village
+    street: ABC Street
+    postal_code: 999999
+    address: ABC Address
   contact:
     country_code: "+99"
     phone_number: 9999999999 
-    email: no-mail@example.com
+    email: user@example.com
     website: https://example.com
 
 educations:
-  - name: Narula Institute of Technology
-    location: West Bengal, India
-    from: "2021"
-    to: "2025"
-    degree_name: B.Tech.
-    field_of_study: "Computer Science Engineering (Specialization in AIML)"
+  - institute_name: ABC Institute
+    degree_name: ABC Degree
+    field: ABC field
+    subfield: ABC subfield
+    specialization: ABC specialization
+    cgpa: 9.3
+    location: Country, Earth
+    duration: 4 years
+    start_date: 2021-03-03
+    end_date: 2025-03-03
     achievements:
-      - Ranked 2nd in debugging competition
+      - 1st at something
+      - 2nd at something
+  - institute_name: ABC Institute 2
+    degree_name: ABC Degree 2
+    field: ABC field 2
+    cgpa: 9.3
+    location: Country, Earth
+    start_date: 2021-03-03
+    end_date: 2025-03-03
+    achievements:
+      - 1st at something
+      - 2nd at something
+  - institute_name: ABC Institute 3
+    degree_name: ABC Degree 3
+    field: ABC field 3
 
 links:
-  - name: Leetcode
-    url: https://leetcode.com/sujaudd1n
-    url_text: leetcode.com/sujaudd1n
-  - name: Github
-    url: https://github.com/sujaudd1n
-    url_text: github.com/sujaudd1n
-  - name: Linkedin
-    url: https://linkedin.com/in/sujaudd1n
-    url_text: linkedin.com/in/sujaudd1n
-  - name: sujauddin.me/articles
-    url: https://sujauddin.me/articles
-    url_text: sujauddin.me/articles
+  - name: Link1
+    url: https://example.com
+    url_text: Link1
+  - name: Link2
+    url: https://example.com
+  - url: https://sujauddin.me/articles
+    url_text: Link3
+  - url: https://example.com
 
 profiles:
-  swe:
+  SWE:
     professional_summary:
-      title: Junior Software Engineer
+      title: Software Engineer
       summary: >
-        Aspiring software engineer with experience in designing and developing full-stack AI-integrated applications. As an engineering intern,
-        I contributed to software projects, leveraging technical expertise to drive innovative solutions and tackle complex real-world problems.
+        Software engineer with experience in designing and developing full-stack AI-integrated applications
     skills:
-      languages: [Python, JavaScript, C, C++, SQL, HTML, CSS]
-      libraries: [React, NextJS, Django, FastAPI, Replicate]
-      'Protocols & APIs': [HTTP, REST APIs, OAuth, OIDC, OpenAPI]
-      Databases: [SQLite, PostgreSQL, MongoDB]
-      Tools: [Git, BASH, Virtual Machine, Docker]
-      Experience: [Linux, Algorithms, Fullstack Development, Open Source, CI/CD, Agile, Object Oriented Programming, GenAI, Machine Learning]
-    
+      languages: [Python, JavaScript]
+      libraries: [This, That]
+      Tools: [Git, BASH, Virtual Machine]
+      Others: [One, Two, Three]
     work_experience:
-      - company_name: Genovation Solutions
-        location: West Bengal, India
-        job_title: Junior Backend Developer Intern
-        from: Jul 2025
-        to: Sep 2025
+      - title: Backend Developer Intern
+        organization: ABC Org
+        description: Description of the experience
+        location: Place, Country
+        logo: https://wikipidia.org/favicon.ico
+        is_current: No
+        start_date: Jul 2025
+        end_date: Sep 2025
+        experience_type: Internship
         contributions:
-          - Engineered a scalable backend system for IoT applications, featuring a real-time database that facilitated seamless data ingestion and processing.
-          - Integrated Large Language Models (LLMs) to automate data interpretation, enhancing data comprehension and actionable insights by 50%.
-          - Developed and deployed full-stack AI applications using technologies like FastAPI, Replicate, Gradio, and Streamlit, ensuring robust performance and user-friendly interfaces.
-          - Successfully migrated a Gradio application to Streamlit, improving maintainability and deployment flexibility while preserving all original UI components and functionality.
-          - Boosted research output by implementing integration between autonomous AI agents.
-      - company_name: Zapuza Technologies
-        location: West Bengal, India
-        job_title: Junior Python Developer Intern
-        from: Nov 2024
-        to: Apr 2025
-        contributions:
-          - Enhanced employee management by integrating attendance tracking with location-based monitoring, resulting in a 20% increase in system functionality and streamlined administrative processes.
-          - Improved data-driven decision-making by designing and developing a financial dashboard that delivered a 40% enhancement in data visualization, enabling quicker insights.
-          - Fortified project security by implementing a role-based access control system, ensuring secure authorization and authentication protocols to protect sensitive data, mitigating potential breaches.
+          - Achieved X measured by Y by doing Z lol
+          - Contribution 2
+          - Contribution 3
+          - Contribution 4
+          - Contribution 5
+        achievements:
+          - Achievement 1
+          - Achievement 2
+          - Achievement 3
+        technologies: [C, CPP, Python, Python++]
+
+      - title: Backend Developer Intern
+        organization: ABC Org
+        technologies: [C, CPP, Python, Python++]
+
+      - title: The Engineer
+        organization: Personal
+
     projects:
-      - name: QuickNote
-        description: AI-powered article writer SaaS.
+      - name: ProjectABC
+        short_description: A short description
+        description: Long description, Long description, Long description 
+        type: Personal
         links:
-          - https://makequicknote.vercel.app
-        techstack: [Python, Django, NextJS, GeminiAI]
+          - https://example.com
+          - https://example.com
+        techstack: [Python, Django]
+        start_date: 2025-12-12
+        end_date: 2025-12-12
+        status: Completed
+        tags: [Python, LLM]
         details:
           - Developed a cutting-edge SaaS platform for productivity, leveraging AI-driven technology to generate high-quality PDF articles from user-provided topics or prompts.
           - Utilized Amazon S3 cloud storage to store and serve generated PDF files, ensuring secure and efficient data management.
-          - Successfully integrated Gemini’s GenAI capabilities to power the article creation process, enabling users to access high-quality, AI-generated content.
+          - Successfully integrated Geminis GenAI capabilities to power the article creation process, enabling users to access high-quality, AI-generated content.
+      - name: Project XYZ
+        short_description: A short description
+        links: 
+          - http://example.com
+
+      - name: Project XYZ 2
+        short_description: A short description
+    
+    certificates:
+      - name: Cert 1
+        issuer: ABC
+        issue_date: 2022-01-01
+        expiry_date: 2022-01-01
+        credential_id: adjo3200u8aslfj
+        url: https://example.com/
+        skills: [JS, Python]
+      - name: Cert 2
+        issuer: XYZ
+      
+    misc:
+      notes: This is some notes for you.
 
 misc:
   qnas:
-    'Can you relocate?': 'Yes'
     'What is your preferred location?': Remote
+    'Can you relocate?': 'Yes'
 `

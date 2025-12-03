@@ -4,7 +4,7 @@
 
 {#if data}
   <div>
-    <h2 class="category-title">Work Experience</h2>
+    <h2 class="category-title">💡 Work Experience</h2>
     <div class="space-y-4">
       {#each data as job, index (index)}
         <div>

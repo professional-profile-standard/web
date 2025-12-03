@@ -39,7 +39,7 @@
         if (location.street) parts.push(location.street);
 
         if (location.village) parts.push(location.village);
-        else if (location.city) parts.push(location.city);
+        if (location.city) parts.push(location.city);
 
         if (location.state) parts.push(location.state);
         if (location.postal_code) parts.push(location.postal_code);
