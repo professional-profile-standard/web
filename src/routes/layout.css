@@ -37,11 +37,3 @@ li {
 .category-title {
     @apply border-b pb-1 mb-4 font-medium text-xl;
 }
-
-@media print {
-
-    .pps-wrapper>div:nth-child(1),
-    .pps-wrapper>div:nth-child(2) {
-        display: none;
-    }
-}

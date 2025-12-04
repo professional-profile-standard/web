@@ -9,7 +9,7 @@
     <link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="lg:max-w-[60dvw] mx-auto p-3 pps-wrapper">
+<div class="lg:max-w-[60dvw] mx-auto p-3 pps-container">
     <div>
         <h1 class="text-2xl font-semibold">
             <a href="/" style="color: unset"> 🌿 Professional Profile Standard </a>

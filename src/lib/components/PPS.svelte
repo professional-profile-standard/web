@@ -8,14 +8,21 @@
     import { miscSnippet, personalDetailsSnippet } from "./snippets.svelte";
 
     const { pps } = $props();
+    let ppsResult = null;
     function printpps() {
-        window.print();
+        if (ppsResult) {
+            const html = ppsResult.innerHTML + "<script>window.print()<\/script>";
+            const blob = new Blob([html], { type: "text/html" });
+            const url = URL.createObjectURL(blob);
+            window.open(url);
+        }
     }
 </script>
 
 <div>
     {#if pps}
-        <div class="pps-result">
+        <Button onclick={printpps}>Print</Button>
+        <div class="pps-result" bind:this={ppsResult}>
             <div class="space-y-10">
                 <Renderer
                     data={pps.personal_details}
@@ -26,7 +33,6 @@
                 <Educations data={pps.educations} />
                 <Links data={pps.links} />
                 <Profiles data={pps.profiles} />
-                <!-- <Misc data={pps.misc} /> -->
                 <Renderer
                     data={pps.misc}
                     message="Error while rendering misc"
@@ -35,6 +41,5 @@
                 />
             </div>
         </div>
-        <Button onclick={printpps} cclass="my-10">Print</Button>
     {/if}
 </div>
