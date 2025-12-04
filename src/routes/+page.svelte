@@ -2,7 +2,7 @@
     import { page } from "$app/state";
     import { parse } from "yaml";
     import { sample_pps } from "$lib/data";
-    import PPS from "$lib/components/PPS.svelte";
+    import PPSWrapper from "$lib/components/PPSWrapper.svelte";
 
     const api_endpoint = "/api/pps";
 
@@ -69,6 +69,6 @@
         <p>Loading...</p>
     {:then data}
         <div class="error">{error}</div>
-        <PPS {pps} />
+        <PPSWrapper {pps} />
     {/await}
 </div>

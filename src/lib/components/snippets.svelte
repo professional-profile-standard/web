@@ -11,6 +11,7 @@
         miscSnippet,
         certificateSnippet,
         profileSnippet,
+        ppsSnippet,
     };
 </script>
 
@@ -29,7 +30,10 @@
     import { skillsSchema } from "$lib/schema";
     import { miscSchema } from "$lib/schema";
     import { experienceSchema } from "$lib/schema";
-    import Profilesold from "./Profilesold.svelte";
+    import { personalDetailsSchema } from "$lib/schema";
+    import Educations from "./Educations.svelte";
+    import Links from "./Links.svelte";
+    import Profiles from "./Profiles.svelte";
 </script>
 
 {#snippet errorMessage(message, error)}
@@ -504,6 +508,27 @@
         <Certificates data={profileData.certificates} />
         <Renderer
             data={profileData.misc}
+            message="Error while rendering misc"
+            schema={miscSchema}
+            snippet={miscSnippet}
+        />
+    </div>
+{/snippet}
+
+{#snippet ppsSnippet(pps)}
+    <div class="space-y-10">
+        <Renderer
+            data={pps.personal_details}
+            message="Error while rendering personal details"
+            schema={personalDetailsSchema}
+            snippet={personalDetailsSnippet}
+        />
+        <Educations data={pps.educations} />
+        <Links data={pps.links} />
+        <Certificates data={pps.certificates} />
+        <Profiles data={pps.profiles} />
+        <Renderer
+            data={pps.misc}
             message="Error while rendering misc"
             schema={miscSchema}
             snippet={miscSnippet}
