@@ -4,7 +4,8 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --primary: #111114;
-        --card: #222226;
+        --card: color-mix(in srgb, white 3%, var(--primary));
+        --card-2: color-mix(in srgb, white 6%, var(--card));
         --text: #ddd;
         --link: rgb(94, 156, 214);
     }
@@ -13,7 +14,8 @@
 @media (prefers-color-scheme: light) {
     :root {
         --primary: #ffffff;
-        --card: #ccc;
+        --card: color-mix(in srgb, black 3%, var(--primary));
+        --card-2: color-mix(in srgb, black 6%, var(--card));
         --text: #161616;
         --link: rgb(49, 82, 112);
     }
@@ -22,6 +24,7 @@
 @theme inline {
     --color-primary: var(--primary);
     --color-card: var(--card);
+    --color-card-2: var(--card-2);
     --color-text: var(--text);
     --color-link: var(--link);
 }
@@ -30,7 +33,21 @@ a {
     @apply text-link;
 }
 
-li {
+#editor:focus {
+    outline: 2px solid var(--text);
+}
+
+ol {
+    list-style-position: inside;
+}
+
+code {
+    background-color: var(--card);
+    padding: 2px;
+    border-radius: 5px;
+}
+
+ul {
     @apply list-disc list-inside;
 }
 

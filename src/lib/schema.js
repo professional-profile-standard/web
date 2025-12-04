@@ -129,7 +129,7 @@ export const projectSchema = object({
         lazy(value =>
             typeof value === 'string'
                 ? string().url('Must be a valid URL')
-                : linkSchema()
+                : linkSchema
         )
     ).default([]),
     techstack: array().of(string()).default([]),

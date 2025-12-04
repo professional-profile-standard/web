@@ -7,12 +7,15 @@
 
 <svelte:head>
     <link rel="icon" href={favicon} />
+    <script src="/vendors/ace/ace.js"></script>
 </svelte:head>
 
 <div class="lg:max-w-[60dvw] mx-auto p-3 pps-container">
     <div>
         <h1 class="text-2xl font-semibold">
-            <a href="/" style="color: unset"> 🌿 Professional Profile Standard </a>
+            <a href="/" style="color: unset">
+                🌿 Professional Profile Standard
+            </a>
         </h1>
         <div class="text-sm">
             <p>

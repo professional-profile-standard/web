@@ -21,6 +21,7 @@
         formatDateRange,
         renderLocation,
         getPhoneNumber,
+        mergeStrings,
     } from "$lib/utils";
     import Renderer from "./Renderer.svelte";
     import Projects from "./Projects.svelte";
@@ -101,8 +102,8 @@
 
 {#snippet professionalSummarySnippet(professional_summary)}
     <div>
-        <h4 class="font-medium text-xl mb-2">
-            {professional_summary?.title}
+        <h4 class="category-title">
+            🪪 {professional_summary?.title}
         </h4>
         <p>{professional_summary?.summary}</p>
     </div>
@@ -110,7 +111,7 @@
 
 {#snippet skillsSnippet(data)}
     <div>
-        <h3 class="font-medium text-xl mb-2">🛠️ Skills</h3>
+        <h3 class="category-title">🛠️ Skills</h3>
         <div class="overflow-auto">
             <table class="w-full">
                 <tbody>
@@ -120,9 +121,10 @@
                                 <h3 class="font-medium text-lg">{category}</h3>
                             </td>
                             <td class="p-2">
-                                {#each items as item, index (index)}
-                                    <span>{item}, </span>
-                                {/each}
+                                {mergeStrings(items)}
+                                <!-- {#each items as item, index (index)} -->
+                                <!-- <span>{item},{' '}</span> -->
+                                <!-- {/each} -->
                             </td>
                         </tr>
                     {/each}
@@ -133,7 +135,7 @@
 {/snippet}
 
 {#snippet experienceSnippet(job)}
-    <div class="experience-item">
+    <div class="experience-item bg-card-2 p-2 rounded-lg">
         <div class="flex items-start gap-3">
             {#if job.logo}
                 <img
@@ -141,18 +143,18 @@
                     alt="{job.organization} logo"
                     class="w-12 h-12 rounded object-contain"
                 />
+            {:else}
+                <p class="text-[48px]">🎯</p>
             {/if}
 
             <div class="flex-1">
-                <div
-                    class="flex flex-col md:flex-row md:items-center justify-between gap-1 mb-2"
-                >
+                <div class="mb-2">
                     <h4 class="font-medium text-lg">
                         {job.title} at {job.organization}
                     </h4>
 
                     {#if job.duration || job.start_date}
-                        <span class="text-sm text-gray-600">
+                        <span>
                             {job.duration ||
                                 formatDateRange(
                                     job.start_date,
@@ -161,52 +163,44 @@
                                 )}
                         </span>
                     {/if}
+
+                    {#if job.is_current}
+                        (<span> Current </span>)
+                    {/if}
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3 mb-3">
-                    <span class="text-gray-700">
+                    <span>
                         {job.organization}
                     </span>
 
                     {#if job.location}
-                        <span class="text-gray-600 text-sm">|</span>
-                        <span class="text-gray-600 text-sm">
+                        <span>|</span>
+                        <span>
                             {job.location}
                         </span>
                     {/if}
 
                     {#if job.experience_type}
-                        <span class="text-gray-600 text-sm">|</span>
-                        <span
-                            class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
-                        >
+                        <span>|</span>
+                        <span>
                             {job.experience_type}
-                        </span>
-                    {/if}
-
-                    {#if job.is_current}
-                        <span
-                            class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
-                        >
-                            Current
                         </span>
                     {/if}
                 </div>
 
                 {#if job.description}
-                    <p class="text-gray-700 mb-3">
+                    <p class="mb-3">
                         {job.description}
                     </p>
                 {/if}
 
                 {#if job.contributions && job.contributions.length > 0}
                     <div class="mb-3">
-                        <h5 class="font-medium text-gray-800 mb-2">
-                            Key Contributions:
-                        </h5>
+                        <h5 class="font-medium mb-2">Key Contributions:</h5>
                         <ul class="pl-5 space-y-1">
                             {#each job.contributions as contribution, i (i)}
-                                <li class="list-disc text-gray-700">
+                                <li class="list-disc">
                                     {contribution}
                                 </li>
                             {/each}
@@ -216,12 +210,10 @@
 
                 {#if job.achievements && job.achievements.length > 0}
                     <div class="mb-3">
-                        <h5 class="font-medium text-gray-800 mb-2">
-                            Achievements:
-                        </h5>
+                        <h5 class="font-medium mb-2">Achievements:</h5>
                         <ul class="pl-5 space-y-1">
                             {#each job.achievements as achievement, i (i)}
-                                <li class="list-disc text-gray-700">
+                                <li class="list-disc">
                                     {achievement}
                                 </li>
                             {/each}
@@ -231,13 +223,11 @@
 
                 {#if job.technologies && job.technologies.length > 0}
                     <div class="mt-3">
-                        <h5 class="font-medium text-gray-800 mb-2">
-                            Technologies:
-                        </h5>
+                        <h5 class="font-medium mb-2">Technologies:</h5>
                         <div class="flex flex-wrap gap-2">
                             {#each job.technologies as tech, i (i)}
                                 <span
-                                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                                    class="px-3 py-1 bg-blue-100 text-gray-800 rounded-full text-sm"
                                 >
                                     {tech}
                                 </span>
@@ -251,7 +241,7 @@
 {/snippet}
 
 {#snippet educationSnippet(education)}
-    <div class="education-item mb-4 bg-card p-2 rounded-lg space-y-1">
+    <div class="education-item bg-card p-2 rounded-lg space-y-1">
         <div class="flex items-center gap-2 text-lg">
             {#if education.logo}{:else}
                 <p>🏫</p>
@@ -311,22 +301,21 @@
 {/snippet}
 
 {#snippet projectSnippet(project)}
-    <div class="space-y-1">
-        <h3 class="font-medium">{project.name}</h3>
+    <div class="space-y-1 bg-card-2 rounded-lg p-2">
+        <h3 class="font-medium text-xl">{project.name}</h3>
         <p>{project.short_description}</p>
         {#if project.description}
-            <p class="text-gray-600">{project.description}</p>
+            <p>{project.description}</p>
         {/if}
 
         {#if project.links && project.links.length > 0}
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-col my-2">
                 {#each project.links as link, i (i)}
                     {#if typeof link === "string"}
                         <a
                             href={link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline"
                         >
                             {link}
                         </a>
@@ -335,7 +324,6 @@
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline"
                         >
                             {link.name || link.url}
                         </a>
@@ -350,9 +338,9 @@
                     <span class="font-medium">Tech Stack</span>:{" "}
                     {#each project.techstack as tech, i (i)}
                         <span
-                            class="inline-block bg-gray-100 px-2 py-1 rounded text-sm mr-1"
+                            class=" bg-gray-100 text-gray-800 px-2 py-1 rounded-lg text-sm mr-1"
                         >
-                            {tech}{#if i < project.techstack.length - 1},{/if}
+                            {tech}
                         </span>
                     {/each}
                 </p>
@@ -360,6 +348,7 @@
         {/if}
 
         {#if project.details && project.details.length > 0}
+            <p class="font-medium">Details</p>
             <ul class="pl-3 space-y-1">
                 {#each project.details as detail, i (i)}
                     <li class="list-disc list-inside">{detail}</li>
@@ -370,116 +359,112 @@
 {/snippet}
 
 {#snippet miscSnippet(data)}
-    <div>
-        <h2 class="category-title">➕ Misc</h2>
+    {#if Object.keys(data).length > 0}
+        <div>
+            <h2 class="category-title">➕ Misc</h2>
 
-        <!-- Cover Letter -->
-        {#if data.cover_letter}
-            <div>
-                <h3 class="font-medium text-lg">Cover Letter</h3>
-                <p>{data.cover_letter}</p>
-            </div>
-        {/if}
+            <!-- Cover Letter -->
+            {#if data.cover_letter}
+                <div>
+                    <h3 class="font-medium text-lg">Cover Letter</h3>
+                    <p>{data.cover_letter}</p>
+                </div>
+            {/if}
 
-        <!-- Q&A Section -->
-        {#if data.qna && Object.keys(data.qna).length > 0}
-            <div>
-                <h3 class="font-medium text-lg">Q&A</h3>
-                <dl>
-                    {#each Object.entries(data.qna) as [question, answer] (question)}
-                        <div>
-                            <dt class="font-medium">{question}</dt>
-                            <dd class="ml-4">{answer}</dd>
-                        </div>
-                    {/each}
-                </dl>
-            </div>
-        {/if}
+            <!-- Q&A Section -->
+            {#if data.qna && Object.keys(data.qna).length > 0}
+                <div>
+                    <h3 class="font-medium text-lg">Q&A</h3>
+                    <dl>
+                        {#each Object.entries(data.qna) as [question, answer] (question)}
+                            <div>
+                                <dt class="font-medium">{question}</dt>
+                                <dd class="ml-4">{answer}</dd>
+                            </div>
+                        {/each}
+                    </dl>
+                </div>
+            {/if}
 
-        <!-- Notes -->
-        {#if data.notes}
-            <div>
-                <h3 class="font-medium text-lg">Notes</h3>
-                <p>{data.notes}</p>
-            </div>
-        {/if}
+            <!-- Notes -->
+            {#if data.notes}
+                <div>
+                    <h3 class="font-medium text-lg">Notes</h3>
+                    <p>{data.notes}</p>
+                </div>
+            {/if}
 
-        <!-- Others Section -->
-        {#if data.others && Object.keys(data.others).length > 0}
-            <div>
-                <h3 class="font-medium text-lg">Others</h3>
-                <dl>
-                    {#each Object.entries(data.others) as [key, value] (key)}
-                        <div>
-                            <dt class="font-medium">{key}</dt>
-                            <dd class="ml-4">
-                                {#if typeof value === "object" && !Array.isArray(value)}
-                                    <pre>{JSON.stringify(value, null, 2)}</pre>
-                                {:else}
-                                    {value}
-                                {/if}
-                            </dd>
-                        </div>
-                    {/each}
-                </dl>
-            </div>
-        {/if}
-    </div>
+            <!-- Others Section -->
+            {#if data.others && Object.keys(data.others).length > 0}
+                <div>
+                    <h3 class="font-medium text-lg">Others</h3>
+                    <dl>
+                        {#each Object.entries(data.others) as [key, value] (key)}
+                            <div>
+                                <dt class="font-medium">{key}</dt>
+                                <dd class="ml-4">
+                                    {#if typeof value === "object" && !Array.isArray(value)}
+                                        <pre>{JSON.stringify(
+                                                value,
+                                                null,
+                                                2,
+                                            )}</pre>
+                                    {:else}
+                                        {value}
+                                    {/if}
+                                </dd>
+                            </div>
+                        {/each}
+                    </dl>
+                </div>
+            {/if}
+        </div>
+    {/if}
 {/snippet}
 
 {#snippet certificateSnippet(certificate)}
-    <div class="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+    <div class="bg-card-2 rounded-lg p-2 space-y-2">
         <div>
-            <h4 class="font-bold text-gray-900">{certificate.name}</h4>
-            <p class="text-sm text-gray-600">{certificate.issuer}</p>
+            <h4 class="font-bold">{certificate.name}</h4>
+            <p class="text-sm">{certificate.issuer}</p>
         </div>
 
-        <div class="grid grid-cols-2 gap-2 text-sm">
+        <div>
             {#if certificate.issue_date}
                 <div>
-                    <span class="text-gray-500">Issued:</span>
-                    <span class="ml-1 text-gray-700"
-                        >{formatDate(certificate.issue_date)}</span
-                    >
+                    <span>Issued:</span>
+                    <span>{formatDate(certificate.issue_date)}</span>
                 </div>
             {/if}
 
             {#if certificate.expiry_date}
                 <div>
-                    <span class="text-gray-500">Expires:</span>
-                    <span class="ml-1 text-gray-700"
-                        >{formatDate(certificate.expiry_date)}</span
-                    >
+                    <span>Expires:</span>
+                    <span>{formatDate(certificate.expiry_date)}</span>
                 </div>
             {/if}
 
             {#if certificate.credential_id}
                 <div class="col-span-2">
-                    <span class="text-gray-500">ID:</span>
-                    <span class="ml-1 font-mono text-gray-700"
-                        >{certificate.credential_id}</span
-                    >
+                    <span>ID:</span>
+                    <span>{certificate.credential_id}</span>
+                </div>
+            {/if}
+
+            {#if certificate.url}
+                <div>
+                    <a href={certificate.url} target="_blank">
+                        View Certificate
+                    </a>
                 </div>
             {/if}
         </div>
 
-        {#if certificate.url}
-            <div>
-                <a
-                    href={certificate.url}
-                    target="_blank"
-                    class="text-blue-600 hover:text-blue-800 text-sm inline-flex items-center"
-                >
-                    🔗 View Certificate
-                </a>
-            </div>
-        {/if}
-
         {#if certificate.skills && certificate.skills.length > 0}
-            <div class="flex flex-wrap gap-1 pt-2 border-t">
+            <div class="flex flex-wrap gap-1">
                 {#each certificate.skills as skill}
                     <span
-                        class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded"
+                        class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-lg"
                     >
                         {skill}
                     </span>
@@ -516,7 +501,7 @@
 {/snippet}
 
 {#snippet ppsSnippet(pps)}
-    <div class="space-y-10">
+    <div class="space-y-20">
         <Renderer
             data={pps.personal_details}
             message="Error while rendering personal details"

@@ -7,7 +7,7 @@
 
 <div>
     <h2 class="category-title">🎯 Experiences</h2>
-    <div class="space-y-2">
+    <div class="space-y-4">
         {#each data as experience}
             <Renderer
                 data={experience}

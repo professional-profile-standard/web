@@ -42,3 +42,7 @@ export function formatDateRange(start, end, isCurrent) {
 
     return `${startStr} - ${endStr}`;
 }
+
+export function mergeStrings(strs) {
+    return strs.join(', ')
+}

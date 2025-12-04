@@ -9,7 +9,7 @@
 {#if data && data.length}
     <div>
         <h2 class="category-title">📃 Certificates</h2>
-        <ul class="space-y-2">
+        <div class="space-y-4">
             {#each data as certificate}
                 <Renderer
                     data={certificate}
@@ -18,6 +18,6 @@
                     snippet={certificateSnippet}
                 />
             {/each}
-        </ul>
+        </div>
     </div>
 {/if}

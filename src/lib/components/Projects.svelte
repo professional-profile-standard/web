@@ -6,8 +6,8 @@
 </script>
 
 <div>
-    <h2 class="category-title">💪 Projects</h2>
-    <div>
+    <h2 class="category-title">📌 Projects</h2>
+    <div class="space-y-4">
         {#each data as project}
             <Renderer
                 data={project}

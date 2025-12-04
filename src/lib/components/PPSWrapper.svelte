@@ -17,7 +17,7 @@
 
 <div>
     {#if pps}
-        <div class="pps-result" bind:this={ppsResult}>
+        <div class="pps-result mb-10" bind:this={ppsResult}>
             <PPS data={pps} />
         </div>
         <Button onclick={printpps}>Print</Button>

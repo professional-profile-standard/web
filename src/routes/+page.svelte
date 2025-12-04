@@ -3,12 +3,21 @@
     import { parse } from "yaml";
     import { sample_pps } from "$lib/data";
     import PPSWrapper from "$lib/components/PPSWrapper.svelte";
+    import { onMount } from "svelte";
 
     const api_endpoint = "/api/pps";
 
     let yaml = $state("");
     let error = $state(null);
     let pps = $state("");
+    let editor;
+
+    onMount(async () => {
+        editor = ace.edit("editor");
+        editor.session.setMode("ace/mode/yaml");
+        editor.setTheme("ace/theme/gruvbox_dark_hard");
+        editor.session.on("change", updatePps);
+    });
 
     async function fetchPpsYamlText() {
         let yaml = "";
@@ -33,16 +42,18 @@
 
     const promise = fetchPpsYamlText()
         .then((txt) => {
-            yaml = txt;
-            updatePps({ target: { value: txt } });
+            if (!editor) return;
+            editor.setValue(txt);
+            updatePps();
         })
         .catch((e) => {
             error = e.message;
         });
 
-    function updatePps(e) {
+    function updatePps() {
         try {
-            pps = parse(yaml);
+            const editorContent = editor.getValue();
+            pps = parse(editorContent);
             error = null;
         } catch (e) {
             error = e.message;
@@ -51,18 +62,23 @@
     }
 </script>
 
+<svelte:head>
+    <script src="/vendors/ace/ace.js"></script>
+</svelte:head>
+
 <div>
     <div class="my-10">
-        <label for="pps-textarea" class="block mb-1 font-medium">
+        <label for="editor" class="block mb-1 font-medium">
             Enter your PPS
         </label>
-        <textarea
-            id="pps-textarea"
-            class="block border w-full h-100 rounded-lg p-2 focus:outline-2 focus:outline-secondary/10"
+        <div
+            id="editor"
+            class="h-[50dvh] border rounded-lg focus:outline-3 focus:outline-text/50"
             placeholder="PPS YAML file content"
-            bind:value={yaml}
-            oninput={updatePps}
-        ></textarea>
+            style={`
+            font-size: 14px;
+            `}
+        ></div>
     </div>
 
     {#await promise}

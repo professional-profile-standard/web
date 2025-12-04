@@ -5,14 +5,18 @@
     const { data } = $props();
 </script>
 
-<div>
-    <h2 class="category-title">🎓 Educations</h2>
-    {#each data as education, index (index)}
-        <Renderer
-            data={education}
-            message="Error while rendering education."
-            schema={educationSchema}
-            snippet={educationSnippet}
-        />
-    {/each}
-</div>
+{#if data && data.length}
+    <div>
+        <h2 class="category-title">🎓 Educations</h2>
+        <div class="space-y-4">
+            {#each data as education, index (index)}
+                <Renderer
+                    data={education}
+                    message="Error while rendering education."
+                    schema={educationSchema}
+                    snippet={educationSnippet}
+                />
+            {/each}
+        </div>
+    </div>
+{/if}

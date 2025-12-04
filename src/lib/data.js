@@ -1,4 +1,4 @@
-export const sample_pps = `
+export const sample_pps = `\
 personal_details:
   first_name: First 
   preferred_first_name: First
@@ -73,7 +73,8 @@ profiles:
     professional_summary:
       title: Software Engineer
       summary: >
-        Software engineer with experience in designing and developing full-stack AI-integrated applications
+        Software engineer with
+        experience in designing and developing full-stack AI-integrated applications.
     skills:
       languages: [Python, JavaScript]
       libraries: [This, That]
@@ -122,9 +123,9 @@ profiles:
         status: Completed
         tags: [Python, LLM]
         details:
-          - Developed a cutting-edge SaaS platform for productivity, leveraging AI-driven technology to generate high-quality PDF articles from user-provided topics or prompts.
-          - Utilized Amazon S3 cloud storage to store and serve generated PDF files, ensuring secure and efficient data management.
-          - Successfully integrated Geminis GenAI capabilities to power the article creation process, enabling users to access high-quality, AI-generated content.
+          - Developed a cutting-edge SaaS platform for productivity.
+          - detail 2
+          - detail 3
       - name: Project XYZ
         short_description: A short description
         links: 
@@ -150,7 +151,8 @@ profiles:
     professional_summary:
       title: Software Engineer
       summary: >
-        Software engineer with experience in designing and developing full-stack AI-integrated applications
+        Software engineer with experience in designing and developing
+        full-stack AI-integrated applications
     skills:
       languages: [Python, JavaScript]
       libraries: [This, That]
@@ -199,9 +201,9 @@ profiles:
         status: Completed
         tags: [Python, LLM]
         details:
-          - Developed a cutting-edge SaaS platform for productivity, leveraging AI-driven technology to generate high-quality PDF articles from user-provided topics or prompts.
-          - Utilized Amazon S3 cloud storage to store and serve generated PDF files, ensuring secure and efficient data management.
-          - Successfully integrated Geminis GenAI capabilities to power the article creation process, enabling users to access high-quality, AI-generated content.
+          - Developed a cutting-edge SaaS platform for productivity.
+          - detail 2
+          - detail 3
       - name: Project XYZ
         short_description: A short description
         links: 
@@ -224,13 +226,9 @@ profiles:
     misc:
       notes: This is some notes for you.
 
-
-
-
 misc:
   cover_letter: This is a cover letter.
   qna:
-    'What is your preferred location?': Remote
-    'Can you relocate?': 'Yes'
+    What's the repo?: https://github.com/professional-profile-standard
   notes: Some notes
 `
